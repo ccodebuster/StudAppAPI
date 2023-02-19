@@ -7,23 +7,28 @@ import org.junit.Test;
 public class StudentCRUDTest extends TestBase {
 
 
-    @Test
+    @Test // get all list
     public void test001() {
 
     }
 
-    @Test
+    @Test // post new and retrive id
     public void test002() {
 
     }
 
-    @Test
+    @Test //update id
     public void test003() {
 
     }
 
-    @Test
+    @Test// delete it
     public void test004() {
+
+    }
+
+    @Test// retrive id and validate
+    public void test005() {
 
     }
 
