@@ -12,13 +12,13 @@ import static io.restassured.RestAssured.given;
 
 public class StudentCRUDTest extends TestBase {
 
-    int idNumber;
+    static int idNumber;
 
     @BeforeClass
     public static void inIt() {
-        RestAssured.baseURI = "http://localhost";
-        RestAssured.port = 3030;
-        RestAssured.basePath = "/products";
+        RestAssured.baseURI = "http://localhost"; // base URI
+        RestAssured.port = 3030; // port number
+        RestAssured.basePath = "/products"; // endpoints
     }
 
     @Test // get all list
@@ -54,8 +54,8 @@ public class StudentCRUDTest extends TestBase {
                 .body(pojo)
                 .post();
         response.then().statusCode(201);
-        int idNumber = response.then().extract().path("id");
 
+         idNumber = response.then().extract().path("id");
         System.out.println(idNumber);
 
 
@@ -72,12 +72,11 @@ public class StudentCRUDTest extends TestBase {
         Response response = given()
                 .log().all()
                 .header("Content-Type", "application/json")
-                .pathParam("id", "9999702")
+                .pathParam("id", idNumber)
                 .when()
                 .body(pojo)
                 .patch("/{id}");
         response.then().statusCode(200);
-
 
     }
 
@@ -86,12 +85,10 @@ public class StudentCRUDTest extends TestBase {
         Response response = given()
                 .log().all()
                 .header("Content-Type", "application/json")
-                .pathParam("id", "9999702")
+                .pathParam("id", idNumber)
                 .when()
                 .delete("/{id}");
         response.then().statusCode(200);
-
-
 
     }
 
@@ -100,7 +97,7 @@ public class StudentCRUDTest extends TestBase {
         Response response = given()
                 .log().all()
                 .header("Content-Type", "application/json")
-                .pathParam("id", "9999702")
+                .pathParam("id", idNumber)
                 .when()
                 .get("/{id}");
         response.then().statusCode(404);

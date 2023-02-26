@@ -11,5 +11,6 @@ public class TestBase {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8080;
         RestAssured.basePath = "/student";
+        //http://localhost:8080/student
     }
 }

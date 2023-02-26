@@ -1,9 +1,12 @@
 package com.studentapp.specificationexample;
 
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 
 public class RequestSpecificationExample {
@@ -14,16 +17,36 @@ public class RequestSpecificationExample {
 
     @BeforeClass
     public static void inIt() {
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = 3030;
+        builder = new RequestSpecBuilder();
+        builder.addHeader("Content-Type", "application/json");
+        builder.addQueryParam("$limit", 2);
+        requestSpecification = builder.build();
 
     }
+
     @Test
     public void test001() {
-
+        given()
+                .log().all()
+                /*  .header("Content-Type","application/json")
+                  .queryParams("Slimit",2)*/
+                .spec(requestSpecification)
+                .when()
+                .get("/products")
+                .then().log().all();
     }
 
-    @Test
+    @Test // same as above without Request specification
     public void test002() {
-
+        given()
+                .log().all()
+                .header("Content-Type", "application/json")
+                .queryParams("Slimit", 2)
+                .when()
+                .get("/products")
+                .then().log().all();
 
     }
 
