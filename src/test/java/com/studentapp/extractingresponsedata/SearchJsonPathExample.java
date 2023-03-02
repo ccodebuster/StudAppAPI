@@ -96,8 +96,10 @@ public class SearchJsonPathExample {
     // 8) Get the price for product Name == Duracell - D Batteries (4-Pack)
     @Test
     public void test008() {
-    List<Integer>price=response.extract().path("data.findAll{it.name == 'Duracell - D Batteries (4-Pack)'}.price");
-        System.out.println(price);
+   /* List<Integer>price=response.extract().path("data.findAll{it.name == 'Duracell - D Batteries (4-Pack)'}.price");
+        System.out.println(price);*/
+        HashMap<String,?> name= response.extract().path("data.findAll{it.name=='Duracell - AAA Batteries (4-Pack)'}.get(0)");
+        System.out.println(name);
     }
 
     // 9) Get the Names of products which have price less than 16.99

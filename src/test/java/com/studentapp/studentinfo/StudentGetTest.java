@@ -1,5 +1,6 @@
 package com.studentapp.studentinfo;
 
+import com.studentapp.model.StudentPojo;
 import com.studentapp.testbase.TestBase;
 import io.restassured.response.Response;
 import org.junit.Test;
@@ -18,7 +19,11 @@ public class StudentGetTest extends TestBase {
                 .get("/list");
 
         response.then().statusCode(200);
-        response.prettyPrint();
+        //response.prettyPrint();
+      StudentPojo  p=response.getBody().as(StudentPojo.class);
+
+        String name=p.getFirstName().toString();
+        System.out.println(name);
 
        /* String res=given()
              .when()
@@ -34,12 +39,16 @@ public class StudentGetTest extends TestBase {
     @Test
     public void getSingleStudentInfo() {
         Response response= given()
-                .pathParam("id", "102")
+                .pathParam("id", "104")
                 .when()
                 .get("/{id}");
         response.then().statusCode(200);
         response.prettyPrint();
 
+        StudentPojo  p=response.getBody().as(StudentPojo.class);
+
+        String name=p.getFirstName();
+        System.out.println(name);
 
     }
 

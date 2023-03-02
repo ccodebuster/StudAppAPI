@@ -58,6 +58,9 @@ public class StudentCRUDTest extends TestBase {
          idNumber = response.then().extract().path("id");
         System.out.println(idNumber);
 
+      /* ProductsPojo s=response.getBody().as(ProductsPojo.class);
+        String actualName=s.getName();
+        Assert.assertEquals(actualName,"urv3i11");*/
 
     }
 

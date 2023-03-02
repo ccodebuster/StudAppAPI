@@ -35,6 +35,5 @@ public class StudentPostTest extends TestBase {
         response.then().log().all().statusCode(201);
         response.prettyPrint();
 
-
     }
 }
